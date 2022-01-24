@@ -1,4 +1,6 @@
 from parsel import Selector
+from db import insert_into_database
+from unidecode import unidecode
 import requests
 
 URL_BASE = "https://sample-university-site.herokuapp.com"
@@ -13,38 +15,36 @@ def fetch(url):
     except requests.ReadTimeout:
         return None
 
-def save_data_on_db(data):
-    pass
+def save_data_on_db(data, next_page):
+    insert_into_database(data)
+    collect_links(next_page)
 
 
-def collect_data(array):
+def collect_data(array, next_page):
     data = []
+    print("Trabalhando links...")
     for item in array:
         html_content = fetch(f"{URL_BASE}{item}")
         selector = Selector(html_content)
-        headers = selector.css("div b::text").getall()
         content = selector.css("div::text").getall()
-        data.append({headers[0]: content[0], headers[1]: content[1]})
-        print({headers[0]: content[0], headers[1]: content[1]})
-    return data
+        data.append((unidecode(content[0].strip().lower()), content[1].strip()))
+
+    save_data_on_db(data, next_page)
 
 
-def collect_all_links(current_page="/approvals/1", array=[]):
+def collect_links(current_page="/approvals/1", array=[]):
     html_content = fetch(f"{URL_BASE}{current_page}")
     selector = Selector(html_content)
     next_page = selector.css("div a::attr(href)").get()
-    if next_page == "/approvals/10":
-        return collect_data(array)
+    page = current_page.split("/")[2]
+    if not next_page:
+        return array
+    elif int(page) % 15 == 0:
+        print(f"Coletando dados da página {page}")
+        collect_data(array, next_page)
     else:
-        page = current_page.split("/")[2]
         print(f"Coletando dados da página {page}")
         array = selector.css("li a::attr(href)").getall()
-        return array + collect_all_links(next_page, array)
+        return array + collect_links(next_page, array)
 
-collect_all_links()
-
-
-""" x = fetch("https://sample-university-site.herokuapp.com/candidate/876.520.413-17")
-selector = Selector(x)
-y = selector.css("div::text").getall()
-print(y[0]) """
+collect_links()

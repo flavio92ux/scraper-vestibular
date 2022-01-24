@@ -1,14 +1,14 @@
 import mysql.connector
 
 def insert_into_database(data):
+    print("Salvando no banco de dados")
     aux = ""
     for i, item in enumerate(data):
         if i == len(data)-1:
             aux += str(item)
         else:
             aux += f"{str(item)}, "
-        
-    print(aux)
+
     
     try:
         connection = mysql.connector.connect(host='localhost',
@@ -23,7 +23,7 @@ def insert_into_database(data):
         cursor = connection.cursor()
         cursor.execute(mySql_insert_query)
         connection.commit()
-        print(cursor.rowcount, "Record inserted successfully into Laptop table")
+        print(cursor.rowcount, "Record inserted successfully into Vestibular table")
         cursor.close()
 
     except mysql.connector.Error as error:
@@ -35,5 +35,5 @@ def insert_into_database(data):
             print("MySQL connection is closed")
 
 
-data = [('AI for Marketing','2019-08-01'), ('ML for Sales','2019-05-15')]
-insert_into_database(data)
+""" data = [('AI for Marketing','2019-08-01'), ('ML for Sales','2019-05-15')]
+insert_into_database(data) """
