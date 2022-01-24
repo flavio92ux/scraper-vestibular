@@ -15,25 +15,34 @@ def insert_into_database(data):
                                             database='Vestibular',
                                             user='flavio',
                                             password='')
+        cursor = connection.cursor()
+
+        stmt = "SHOW TABLES LIKE 'Candidates'"
+        cursor.execute(stmt)
+        result = cursor.fetchone()
+
+        mySql_Create_Table_Query = """CREATE TABLE Candidates ( 
+                             Id int(11) AUTO_INCREMENT NOT NULL,
+                             Name varchar(250) NOT NULL,
+                             Score varchar(250) NOT NULL,
+                             PRIMARY KEY (Id)) """
+        
 
         mySql_insert_query = f"""INSERT INTO Candidates (Name, Score) 
                             VALUES 
                             {aux}; """
 
-        cursor = connection.cursor()
+        if not result:
+            cursor.execute(mySql_Create_Table_Query)
         cursor.execute(mySql_insert_query)
         connection.commit()
-        print(cursor.rowcount, "Record inserted successfully into Vestibular table")
+        print(cursor.rowcount, "Record inserted successfully into Candidates table")
         cursor.close()
 
     except mysql.connector.Error as error:
-        print("Failed to insert record into Laptop table {}".format(error))
+        print("Failed to insert record into Candidates table {}".format(error))
 
     finally:
         if connection.is_connected():
             connection.close()
             print("MySQL connection is closed")
-
-
-""" data = [('AI for Marketing','2019-08-01'), ('ML for Sales','2019-05-15')]
-insert_into_database(data) """
