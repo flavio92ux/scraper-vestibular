@@ -1,5 +1,6 @@
 from parsel import Selector
 from db import insert_into_database
+from cpf import validate
 from unidecode import unidecode
 import requests
 
@@ -44,7 +45,8 @@ def collect_links(current_page="/approvals/1", array=[]):
         collect_data(array, next_page)
     else:
         print(f"Coletando dados da página {page}")
-        array = selector.css("li a::attr(href)").getall()
+        aux = selector.css("li a::attr(href)").getall()
+        array = [item for item in aux if validate(item.split("/")[2])]
         return array + collect_links(next_page, array)
 
 collect_links()
