@@ -22,6 +22,16 @@ $ python3 -m pip install -r requirements.txt
 $ python3 -m scraper.py
 ```
 
+OBS.: CONFIGURAR DEVIDAMENTE AS VARIÁVEIS DE AMBIENTE CONTIDOS NO ARQUIVO .env NA RAIZ DO PROJETO
+
+EXECUÇÃO DO PROJETO COM DOCKER
+
+- Outra opção de executar o projeto é atraves do docker-compose com o seguinte comando:
+
+```bash
+$ docker-compose up -d
+```   
+
 DESCRIÇÃO DO PROJETO
 
 - Este projeto consiste em fazer a captura de dados da URL https://sample-university-site.herokuapp.com/.
