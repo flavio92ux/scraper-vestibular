@@ -15,15 +15,6 @@ services:
       - mysqlsrv
     networks:
       - mysql-compose-network
-    
-  adminer:
-    image: adminer
-    depends_on:
-      - mysqlsrv
-    ports:
-      - 8080:8080
-    networks:
-      - mysql-compose-network
 
   mysqlsrv:
     image: mysql:5.7

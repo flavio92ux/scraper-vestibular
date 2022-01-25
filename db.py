@@ -1,5 +1,4 @@
 import mysql.connector
-from dotenv import dotenv_values
 import os
 
 
