@@ -51,7 +51,7 @@ LISTA DE FUNÇÕES EXECUTADAS:
 
    - collect_links -> responsável por fazer a captura de links de cada candidato. É a primeira função a ser chamada. Nesta etapa é que é feita a validação da validade do CPF utilizando o módulo importado cpf.py. Quando chamada sem parâmetros, adota o primeiro parametro como "/approvals/1", se tratando da primeira página. O segundo parâmetro somente deve ser chamada pela função recursiva.
 
-   -validate -> Função importada do módulo cpf.py com o objetivo de validar os CPFs obtidos no site.
+   - validate -> Função importada do módulo cpf.py com o objetivo de validar os CPFs obtidos no site.
 
    - collect_data -> Função a ser chamada pela collect_links. É responsável por iterar no array obtido na primeira função, extrair nome e nota de cada candidato e salvar em um array. Nesta etapa é que são feitas a limpeza dos dados. Os dados obtidos são passados para a função save_data_on_db
 
