@@ -1,7 +1,7 @@
 from parsel import Selector
+from unidecode import unidecode
 from db import insert_into_database
 from cpf import validate
-from unidecode import unidecode
 import requests
 
 URL_BASE = "https://sample-university-site.herokuapp.com"

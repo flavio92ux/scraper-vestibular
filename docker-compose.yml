@@ -1,0 +1,30 @@
+version: '3'
+services:
+  python_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+    links:
+      - 'mysql_db'
+    depends_on:
+      - mysql_db
+    networks:
+      - app-tier
+
+  mysql_db:
+    image: mysql:5.7
+    ports:
+      - '3307:3306'
+    environment: 
+      MYSQL_ROOT_PASSWORD: 'flavio'
+      MYSQL_DATABASE: 'Vestibular'
+      MYSQL_USER: 'flavio'
+      MYSQL_PASSWORD: ''
+    networks:
+      - app-tier
+
+networks:
+  app-tier:
+    driver: bridge
