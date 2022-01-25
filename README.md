@@ -9,7 +9,7 @@ REQUISITOS
 - mySql;
 - docker (opcional)
 
-INSTALAÇÃO DO PROJETO NA MÁQUINA LOCAL:
+INSTALAÇÃO DO PROJETO NO COMPUTADOR LOCAL:
 
 - Clone o repositório e entre no diretorio raiz e execute os comandos:
 
@@ -24,12 +24,6 @@ $ python3 -m pip install -r requirements.txt
 
 OBS.: Não esquecer de configurar as variáveis de ambiente .env na raiz do projeto para configurar as credenciais do mySQL
 
-EXECUÇÃO:
-
-- Para executar o projeto utilize o comando no terminal:
-```bash
-$ python -u scraper.py
-```
 
 INSTALAÇÃO DO PROJETO COM DOCKER
 
@@ -37,6 +31,13 @@ INSTALAÇÃO DO PROJETO COM DOCKER
 
 ```bash
 $ docker-compose up -d
+```
+
+EXECUÇÃO:
+
+- Para executar o projeto utilize o comando no terminal:
+```bash
+$ python -u scraper.py
 ```
 
 
