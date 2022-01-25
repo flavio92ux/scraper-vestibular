@@ -4,27 +4,40 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - '80:80'
+    environment:
+      MYSQL_HOST: "mysqlsrv"
+      MYSQL_DATABASE: "Vestibular"
+      MYSQL_USER: "flavio"
+      MYSQL_PASSWORD: "password"
     links:
-      - 'mysql_db'
+      - mysqlsrv
     depends_on:
-      - mysql_db
+      - mysqlsrv
     networks:
-      - app-tier
-
-  mysql_db:
-    image: mysql:5.7
+      - mysql-compose-network
+    
+  adminer:
+    image: adminer
+    depends_on:
+      - mysqlsrv
     ports:
-      - '3307:3306'
-    environment: 
-      MYSQL_ROOT_PASSWORD: 'flavio'
-      MYSQL_DATABASE: 'Vestibular'
-      MYSQL_USER: 'flavio'
-      MYSQL_PASSWORD: ''
+      - 8080:8080
     networks:
-      - app-tier
+      - mysql-compose-network
+
+  mysqlsrv:
+    image: mysql:5.7
+    environment:
+      MYSQL_HOST: "mysqlsrv"
+      MYSQL_DATABASE: "Vestibular"
+      MYSQL_USER: "flavio"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "password"
+    ports:
+      - "3313:3306"
+    networks:
+      - mysql-compose-network
 
 networks:
-  app-tier:
+  mysql-compose-network:
     driver: bridge

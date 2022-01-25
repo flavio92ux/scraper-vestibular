@@ -1,16 +1,16 @@
 import mysql.connector
 from dotenv import dotenv_values
+import os
 
-config = dotenv_values(".env")
 
 def insert_into_database(data):
-    db_name = config['DATABASE']
-    db_host = config['HOST']
-    db_user = config['USER']
-    db_password = config['PASSWORD']
-
+    db_name = os.environ['MYSQL_DATABASE']
+    db_host = os.environ['MYSQL_HOST']
+    db_user = os.environ['MYSQL_USER']
+    db_password = os.environ['MYSQL_PASSWORD']
 
     print(f"Salvando no banco de dados {db_name}")
+
     aux = ""
     for i, item in enumerate(data):
         if i == len(data)-1:
