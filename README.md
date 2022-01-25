@@ -38,4 +38,7 @@ FUNÇÕES
    - save_data_on_db -> Faz o envio do array de tuplas com os dados dos candidatos para a função insert_into_database. Realizada essa etapa, a função collect_links novamente é chamada com um novo parâmetro de paginação.
 
    - insert_into_database -> Recebe o array de tuplas obtidos nas etapas anteriores e os persiste no banco de dados mySql
+
+![image](https://user-images.githubusercontent.com/74303828/150969050-f4dbd9d1-9029-4df3-bcc8-e55b10115878.png)
+
     
