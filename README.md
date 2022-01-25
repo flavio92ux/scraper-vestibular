@@ -33,7 +33,7 @@ INSTALAÇÃO DO PROJETO COM DOCKER
 $ docker-compose up -d
 ```
 
-EXECUÇÃO:
+EXECUÇÃO NA MÁQUINA LOCAL:
 
 - Para executar o projeto utilize o comando no terminal:
 ```bash
