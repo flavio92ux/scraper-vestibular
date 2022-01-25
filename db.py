@@ -1,12 +1,15 @@
 import mysql.connector
 import os
+from dotenv import load_dotenv 
 
+load_dotenv()
 
 def insert_into_database(data):
     db_name = os.environ['MYSQL_DATABASE']
     db_host = os.environ['MYSQL_HOST']
     db_user = os.environ['MYSQL_USER']
     db_password = os.environ['MYSQL_PASSWORD']
+
 
     print(f"Salvando no banco de dados {db_name}")
 
