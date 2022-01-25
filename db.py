@@ -1,7 +1,16 @@
 import mysql.connector
+from dotenv import dotenv_values
+
+config = dotenv_values(".env")
 
 def insert_into_database(data):
-    print("Salvando no banco de dados")
+    db_name = config['DATABASE']
+    db_host = config['HOST']
+    db_user = config['USER']
+    db_password = config['PASSWORD']
+
+
+    print(f"Salvando no banco de dados {db_name}")
     aux = ""
     for i, item in enumerate(data):
         if i == len(data)-1:
@@ -11,10 +20,17 @@ def insert_into_database(data):
 
     
     try:
-        connection = mysql.connector.connect(host='localhost',
-                                            database='Vestibular',
-                                            user='flavio',
-                                            password='')
+        connection = mysql.connector.connect(host=db_host,
+                                            user=db_user,
+                                            password=db_password)
+        
+        cursor = connection.cursor()
+        cursor.execute(f'CREATE DATABASE IF NOT EXISTS {db_name}')
+
+        connection = mysql.connector.connect(host=db_host,
+                                            database=db_name,
+                                            user=db_user,
+                                            password=db_password)
         cursor = connection.cursor()
 
         stmt = "SHOW TABLES LIKE 'Candidates'"
