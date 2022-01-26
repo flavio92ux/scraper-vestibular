@@ -13,12 +13,17 @@ def insert_into_database(data):
 
     print(f"Salvando no banco de dados {db_name}")
 
-    aux = ""
+
+    # Salva tuplas em formato de string com formatação
+    # correta para introduzir query no mySQL
+
+    candidates = ""
+
     for i, item in enumerate(data):
         if i == len(data)-1:
-            aux += str(item)
+            candidates += str(item)
         else:
-            aux += f"{str(item)}, "
+            candidates += f"{str(item)}, "
 
     
     try:
@@ -41,17 +46,19 @@ def insert_into_database(data):
 
         mySql_Create_Table_Query = """CREATE TABLE Candidates ( 
                              Id int(11) AUTO_INCREMENT NOT NULL,
+                             CPF varchar(250) NOT NULL,
                              Name varchar(250) NOT NULL,
                              Score varchar(250) NOT NULL,
                              PRIMARY KEY (Id)) """
         
 
-        mySql_insert_query = f"""INSERT INTO Candidates (Name, Score) 
+        mySql_insert_query = f"""INSERT INTO Candidates (CPF, Name, Score) 
                             VALUES 
-                            {aux}; """
+                            {candidates}; """
 
         if not result:
             cursor.execute(mySql_Create_Table_Query)
+
         cursor.execute(mySql_insert_query)
         connection.commit()
         print(cursor.rowcount, "Record inserted successfully into Candidates table")
@@ -64,3 +71,4 @@ def insert_into_database(data):
         if connection.is_connected():
             connection.close()
             print("MySQL connection is closed")
+
