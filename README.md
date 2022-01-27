@@ -50,7 +50,7 @@ DESCRIÇÃO DO PROJETO
 
 LISTA DE FUNÇÕES EXECUTADAS:
 
-   - get_page -> Função inicializadora do projeto: responsável por fazer a captura de links de cada candidato. É a primeira função a ser chamada. Nesta etapa é que é feita a validação da validade do CPF utilizando o módulo importado cpf.py. Quando chamada sem parâmetros, adota o primeiro parametro como "/approvals/1", se tratando da primeira página. O segundo parâmetro somente deve ser chamada pela função recursiva.
+   - get_page -> Função inicializadora do projeto: responsável por fazer a captura de links de cada candidato. Nesta função também é feita a chamada da função de validação dos CPFs como módulo cpf.py. Quando chamada sem parâmetros, adota o primeiro parametro como "/approvals/1", se tratando da primeira página. O segundo parâmetro somente deve ser chamada pela função recursiva.
 
    - store_link_info -> Função auxiliar responsável por capturar links e adicionar em variável.
 
