@@ -43,10 +43,10 @@ $ python -u scraper.py
 
 DESCRIÇÃO DO PROJETO
 
-- Este projeto consiste em fazer a captura de dados da URL https://sample-university-site.herokuapp.com/.
+- Este projeto consiste em fazer a captura de todos dados públicos da URL https://sample-university-site.herokuapp.com/ e estruturá-los em um bando de dados SQL.
 - Em cada página, é feita a captura dos links com dados de CPF contidos. Estes CPFs são verificados e adicionador em um array.
 - A cada 5 iterações de captura dos links, é feito seu processamento e salvamento no banco de dados. Durante o processamento, o algorimo acessa cada um dos links individualmente, faz a captura dos dados de cada candidado, armazenando em forma de array de tuplas Nesse processo é feita a limpeza de dados (retira-se espaços e acentos).
-- Após esse processo é novamente é chamada a na função de captura de links para os 15 links subsequentes.
+- Após esse processo é novamente é chamada a na função de captura de links para os 5 links subsequentes.
 
 LISTA DE FUNÇÕES EXECUTADAS:
 
