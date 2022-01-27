@@ -6,6 +6,7 @@ import requests
 
 URL_BASE = "https://sample-university-site.herokuapp.com"
 
+# Requisicao html
 def fetch(url):
     try:
         response = requests.get(url, timeout=12)
@@ -18,14 +19,15 @@ def fetch(url):
 
 acc = [] # variável auxiliar responsável por armezenar links dos candidatos de forma cumulativa
 
+
+#redireciona para banco de dados
 def save_data_on_db(data, next_page):
     insert_into_database(data) # salva os dados no banco de dados
     acc.clear()
     get_page(next_page) # Retorna a função inicial a partir de next_page
 
 
-# Função responsável por extrair dados de cada candidato
-
+# Extrai dados de cada candidato
 def collect_data(array, next_page):
     data = []
 
@@ -46,8 +48,7 @@ def collect_data(array, next_page):
     save_data_on_db(data, next_page)
 
 
-# Função responsável por coletar links na página e armazenar em variáveis
-
+# Função que coleta links na página e armazenar em variáveis
 def store_link_info(selector):
     candidate_info = selector.css("li a::attr(href)").getall()
 
@@ -61,6 +62,8 @@ def store_link_info(selector):
     return candidates_list
 
 
+
+# Obtencao de página
 def get_page(current_page="/approvals/1", candidates_list=[]):
     html_content = fetch(f"{URL_BASE}{current_page}")
     selector = Selector(html_content)
@@ -85,4 +88,4 @@ def get_page(current_page="/approvals/1", candidates_list=[]):
         # Função collect_links é chamada recursivamente para a próxima página
 
 
-get_page() # Executa coleta de links
+get_page()

@@ -45,12 +45,14 @@ DESCRIÇÃO DO PROJETO
 
 - Este projeto consiste em fazer a captura de dados da URL https://sample-university-site.herokuapp.com/.
 - Em cada página, é feita a captura dos links com dados de CPF contidos. Estes CPFs são verificados e adicionador em um array.
-- A cada 15 iterações de captura dos links, é feito seu processamento e salvamento no banco de dados. Durante o processamento, o algorimo acessa cada um dos links individualmente, faz a captura dos dados de cada candidado, armazenando em forma de array de tuplas Nesse processo é feita a limpeza de dados (retira-se espaços e acentos).
+- A cada 5 iterações de captura dos links, é feito seu processamento e salvamento no banco de dados. Durante o processamento, o algorimo acessa cada um dos links individualmente, faz a captura dos dados de cada candidado, armazenando em forma de array de tuplas Nesse processo é feita a limpeza de dados (retira-se espaços e acentos).
 - Após esse processo é novamente é chamada a na função de captura de links para os 15 links subsequentes.
 
 LISTA DE FUNÇÕES EXECUTADAS:
 
-   - collect_links -> responsável por fazer a captura de links de cada candidato. É a primeira função a ser chamada. Nesta etapa é que é feita a validação da validade do CPF utilizando o módulo importado cpf.py. Quando chamada sem parâmetros, adota o primeiro parametro como "/approvals/1", se tratando da primeira página. O segundo parâmetro somente deve ser chamada pela função recursiva.
+   - get_page -> responsável por fazer a captura de links de cada candidato. É a primeira função a ser chamada. Nesta etapa é que é feita a validação da validade do CPF utilizando o módulo importado cpf.py. Quando chamada sem parâmetros, adota o primeiro parametro como "/approvals/1", se tratando da primeira página. O segundo parâmetro somente deve ser chamada pela função recursiva.
+
+   - store_link_info -> Função auxiliar responsável por capturar links e adicionar em variável.
 
    - validate -> Função importada do módulo cpf.py com o objetivo de validar os CPFs obtidos no site.
 
