@@ -62,4 +62,4 @@ LISTA DE FUNÇÕES EXECUTADAS:
 
    - insert_into_database -> Recebe o array de tuplas obtidos nas etapas anteriores e os persiste no banco de dados mySql
 
-*Veja comentários no código
+*Mais detalhes no código
